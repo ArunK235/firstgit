@@ -13,8 +13,12 @@ console.log(titles);
 
 
 var odd=document.querySelectorAll('li:nth-child(odd)');
+var even=document.querySelectorAll('li:nth-child(even)');
 for(var i=0; i<odd.length;i++){
-    odd[i].style.backgroundColor='#f4f4f4';
+    odd[i].style.backgroundColor='green';
+}
+for(var i=0; i<even.length;i++){
+    even[0].style.backgroundColor='green';
 }
 
 // difference between querselector and queryselector all is queryselector returns single element but queryselectorall returns for multple elements.
