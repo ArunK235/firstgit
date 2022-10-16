@@ -15,17 +15,19 @@ function addItem(e){
     //add textnode to the input value
     li.appendChild(document.createTextNode(newitem));
     itemList.appendChild(li);
+     //creaatw edit button
+    var editbtn= document.createElement('button');
+    editbtn.className='btn btn-danger btn-sm float-right edit';
+    editbtn.appendChild(document.createTextNode('edit'));
+    li.appendChild(editbtn);
     //create del button
     var deletebtn= document.createElement('button');
     deletebtn.className='btn btn-danger btn-sm float-right delete';
     //append textNode
     deletebtn.appendChild(document.createTextNode('X'));
     li.appendChild(deletebtn);
-    //creaatw edit button
-    var editbtn= document.createElement('button');
-    editbtn.className='btn btn-danger btn-sm float-right edit';
-    editbtn.appendChild(document.createTextNode('edit'));
-    li.appendChild(editbtn);
+   
+    
 }
 //delete event
 itemList.addEventListener('click', removeitem);
