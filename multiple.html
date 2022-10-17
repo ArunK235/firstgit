@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form id="my-form" onsubmit="saveToLocalStorage(event)">
+            <h1>Add User</h1>
+            <div class="msg"></div>
+            <div>
+              <label for="name">Name:</label>
+              <input type="text" id="name" required>
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input type="text" id="email" required>
+            </div>
+            <div>
+              <label for="phonenumber">phonenumber:</label>
+              <input type="text" id="phonenumber">
+            </div>
+            <div>
+              <label for="password">password:</label>
+              <input type="text" id="password" required>
+            </div>
+            <input class="btn" type="submit" value="Submit">
+          </form>
+          <ul id="list of user"></ul>
+          <script>
+            function saveToLocalStorage(event){
+              event.preventDefault();
+              const name=event.target.name.value;
+              const email=event.target.email.value;
+              const phonenumber=event.target.phonenumber.value;
+              const password= event.target.password.value;
+              /*localStorage.setItem('name',name);
+              localStorage.setItem('email',email);
+              localStorage.setItem('phonenumber',phonenumber);
+              localStorage.setItem('password',password);*/
+              let obj={
+
+                name,
+                email,
+                phonenumber,
+                password
+              };
+              localStorage.setItem(obj.email,JSON.stringify(obj));
+              //other method;
+              /*let obj_seralazied=JSON.stringify(obj);
+              localStorage.setItem('obj',obj_seralazied);
+              console.log(localStorage);
+              let obj_deserelazied=JSON.parse(localStorage.getItem('obj'));
+              console.log(obj_deserelazied);*/
+              ShowNewUsersOnScreen(obj)
+            }
+            function ShowNewUsersOnScreen(user){
+              const parentNode= document.getElementById('list of user');
+              const childHTML=`<li> ${user.name}-${user.email}</li>`
+              parentNode.innerHTML=parentNode.innerHTML+childHTML;
+            }
+      
+          
+          </script>
+    </body>
+</html>
