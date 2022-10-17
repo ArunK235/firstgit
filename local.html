@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form id="my-form" onsubmit="saveToLocalStorage(event)">
+            <h1>Add User</h1>
+            <div class="msg"></div>
+            <div>
+              <label for="name">Name:</label>
+              <input type="text" id="name" required>
+            </div>
+            <div>
+              <label for="email">Email:</label>
+              <input type="text" id="email" required>
+            </div>
+            <div>
+              <label for="phonenumber">phonenumber:</label>
+              <input type="text" id="phonenumber">
+            </div>
+            <div>
+              <label for="password">password:</label>
+              <input type="text" id="password" required>
+            </div>
+            <input class="btn" type="submit" value="Submit">
+          </form>
+          <script>
+            function saveToLocalStorage(event){
+              event.preventDefault();
+              const name=event.target.name.value;
+              const email=event.target.email.value;
+              const phonenumber=event.target.phonenumber.value;
+              const password= event.target.password.value;
+              localStorage.setItem('name',name);
+              localStorage.setItem('email',email);
+              localStorage.setItem('phonenumber',phonenumber);
+              localStorage.setItem('password',password);
+            }
+      
+          </script>
+    </body>
+</html>
