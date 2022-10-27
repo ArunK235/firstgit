@@ -13,14 +13,15 @@ var bound=adding.bind(obj);
 console.log(bound(1,2,3));
 
 var student={
-    age:20
+    age:20,
+    details:function(){
+        return this.age;
+    }
 };
-var adding1=function(age){
-    return this.age+age;
-}
-var bound=adding1.bind(student);
-console.log(bound(0));
+var bound= student.details;
 
+var boundnext=bound.bind(student);
+console.log(boundnext());
 
  
 //function curring
