@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="my-form" onsubmit="saveToLocalStorage(event)">
+        <div class="msg"></div>
+        <div>
+
+            <label for="chooseexpensive">ChooseExpensive:</label>
+            <input type="text" id="chooseexpensive">
+            <label for="choosetheater">ChooseTheater:</label>
+            <input type="'text" id="choosetheater">
+            <label for="choosemovie">ChooseMovie:</label>
+            <input type="text" id="choosemovie">
+            <input class="btn" type="submit" value="AddExpensive">
+        </div>
+    </form>
+    <ul id="list of user"></ul>
+    <script>
+        function saveToLocalStorage(event){
+            event.preventDefault();
+            const chooseexpensive=event.target.chooseexpensive.value;
+            const choosetheater=event.target.choosetheater.value;
+             
+            const choosemovie= event.target.choosemovie.value;
+          
+            let obj={
+
+                chooseexpensive,
+                choosetheater,
+                choosemovie
+            };
+            localStorage.setItem(obj.choosetheater,JSON.stringify(obj));
+            ShowNewUsersOnScreen(obj);
+        }
+        function ShowNewUsersOnScreen(user){
+            if(localStorage.getItem(user.choosetheater)!==null){
+                removeFromScreen(user.choosetheater);
+            }
+            const parentNode= document.getElementById('list of user');
+            const childHTML=`<li id=${user.choosetheater}> ${user.chooseexpensive}-${user.choosetheater}-${user.choosemovie}<button onclick=deleteExpensive('${user.choosetheater}')> Delete Expensive </button>
+                                        <button onclick=editUserDetails('${user.chooseexpensive}','${user.choosetheater}','${user.choosemovie}')>Edit Expensive </button></li>`
+            parentNode.innerHTML=parentNode.innerHTML+childHTML;
+        }
+        function removeFromScreen(choosetheater){
+            const parentNode= document.getElementById('list of user');
+            const childNodeToBeDeleted=document.getElementById(choosetheater);
+            if(childNodeToBeDeleted){
+
+                parentNode.removeChild(childNodeToBeDeleted);
+            }
+        }
+        function deleteExpensive(choosetheater){
+            localStorage.removeItem(choosetheater);
+            removeFromScreen(choosetheater);
+        }
+        function editUserDetails(chooseexpensive,choosetheater, choosemovie){
+            document.getElementById('chooseexpensive').value = chooseexpensive;
+            document.getElementById('choosetheater').value = choosetheater;
+            document.getElementById('choosemovie').value =choosemovie;
+            deleteExpensive(choosetheater)
+        }
+    </script>
+    
+</body>
+</html>
